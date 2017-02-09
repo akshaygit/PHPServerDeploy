@@ -1,0 +1,14 @@
+# appspec.yml file to install myApp using CodeDeploy
+# See the "AppSpec File Reference" at
+#   http://docs.aws.amazon.com/codedeploy/latest/userguide/app-spec-ref.html
+version: 0.0
+os: linux
+# Copy all files to /var/myApp
+files:
+  - source: /
+    destination: /var/myApp
+hooks:
+## After files have been copied, run the startApp.sh script
+  ApplicationStart:
+    - location: scripts/startApp.sh
+      timeout: 300
